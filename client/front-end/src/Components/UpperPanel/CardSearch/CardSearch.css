@@ -1,0 +1,111 @@
+/* CSS */
+
+.card-input{
+    flex: 1;
+    color: black;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    /* align-items: left; */
+    font-size: 1.5rem;
+    font-style: italic;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+.card-input-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    /* margin: 0 10%; */
+}
+
+.card-input-title{
+   flex: 1;
+   /* margin: 1rem;; */
+   color: red;
+   /* font-family: 'Pokemon Solid', sans-serif; */
+   /* font-size: 1rem; */
+   font-weight: 500;
+   /* width:100%; */
+   /* justify-content: left; */
+}
+
+.card-text-input{
+    flex: 1;
+    /* padding: 5px; */
+    /* margin: 1rem; */
+    background-color: blue;
+    font-style: italic;
+    margin:5px;
+    /* font-size: 1rem; */
+    /* font-weight: 500; */
+    color: yellow;
+    /* border-style: solid; */
+    background-color: red;
+    /* border-color: blue; */
+    /* margin: 0% 1%; */
+}
+
+.search-btn{
+    background-color: yellow;
+}
+
+
+.card-window{
+    /* animation: ease-in 1s linear 0; */
+    flex: 2;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.card-img{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    min-width:238px;
+    max-width:238px;
+    min-height: 332px;
+    max-height: 332px;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.card-info{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    color: yellow;
+}
+
+.info-chunk{
+    border: 1px solid red;
+}
+
+/* .container {
+    border: 1px solid silver;
+    width: 150px;
+  }
+  
+  .item {
+    cursor: pointer;
+  }
+  
+  .item:hover {
+    color: blue;
+  }
+  
+  input {
+    width: 300px;
+  } */
+
+@keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+  }
