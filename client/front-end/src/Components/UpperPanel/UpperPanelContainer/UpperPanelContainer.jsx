@@ -24,19 +24,23 @@ const [fetchedCard, setFetchedCard] = useState({
 
 // Runs when search button clicked
 const handleSubmit = event => {
+    console.log(searchData.name)
+    console.log(searchData.number)
+    console.log(searchData.set)
     console.log("In the function")
 
     event.preventDefault(); // prevent page refresh
     
     //Query to Pokemon API
-    pokemon.card.all({ q: `name:${searchData.name} number:${searchData.number} set.name:${searchData.set}`}).then(result => {
+    pokemon.card.all({ q: `name:${searchData.name} number:${searchData.number}`}).then(result => {
         for (let i = 0; i < result.length; i++) {
+            console.log(result[i])
             if(result[i].set.name.toUpperCase() == searchData.set.toUpperCase()){
                 setFetchedCard({
                     img: result[i].images.small,
                     price: result[i].cardmarket.prices.trendPrice
                 })
-            } console.log(result[i])
+            } console.log(searchData.name)
         }
         
     })

@@ -32,14 +32,14 @@
 .card-text-input{
     /* margin:10px; */
     color: #000000;
-    background-color: #CF6B76;
+    background-color: #30332E;
     font-size: 1.5rem;
 
 }
 
 ::placeholder{
     font-style: italic;
-    color:#FED269;
+    color:#FFFBFC;
 }
 
 
@@ -50,7 +50,7 @@
     border-radius: 15%;
     justify-content: center;
     background-color: #000000;
-    color: #CF6B76;
+    color: #FFFBFC;
     font-size: 2rem;
     cursor: pointer;
     padding:10px;
