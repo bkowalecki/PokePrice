@@ -7,6 +7,7 @@ import CardInfo from '../CardInfo/CardInfo'
 
 pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
 
+const UpperPanelContainer = () => {
 // const [name, setName] = useState('');
 // const [set, setSet] = useState('');
 // const [number, setNumber] = useState('');
@@ -23,49 +24,58 @@ pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
 //     price: cardPrice
 // }
 
-const [searchInput, setSearchInput] = useState({
+
+const [searchData, setSearchData] = useState({
     name: "",
     set: "",
-    number: "",
+    number: ""
+
+})
+
+const [fetchedCard, setFetchedCard] = useState({
     img: "https://images.pokemontcg.io/base/1.png",
-    price:""
+    price: ""
 })
 
 
-
 // Runs when search button clicked
-const handleSearch = event => {
+const handleSubmit = event => {
     console.log("In the function")
 
     event.preventDefault(); // prevent page refresh
     
-    pokemon.card.all({ q: `name:${name} number:${number} set.name:${set}`}).then(result => {
+    pokemon.card.all({ q: `name:${searchData.name} number:${searchData.number} set.name:${searchData.set}`}).then(result => {
         for (let i = 0; i < result.length; i++) {
-            if(result[i].set.name.toUpperCase() == set.toUpperCase()){
-                setCardUrl(result[i].images.small)
-                setCardPrice(result[i].cardmarket.prices.trendPrice)
-                setName(result[i].name)
-                setCardId(result[i].id)
-                setSet(result[i].set.name)
+            if(result[i].set.name.toUpperCase() == searchData.set.toUpperCase()){
+                // setCardUrl(result[i].images.small)
+                // setCardPrice(result[i].cardmarket.prices.trendPrice)
+                // setName(result[i].name)
+                // setCardId(result[i].id)
+                // setSet(result[i].set.name)
+                setFetchedCard({
+                    img: result[i].images.small,
+                    price: result[i].cardmarket.prices.trendPrice
+                })
                 console.log(result[i])
                
-            } console.log(set)
+            } 
         }
         
     })
 };
+console.log({searchData})
 
-
-const UpperPanelContainer = () => {
 
     return(
         <div className='upper-panel-container'>
             <CardSearch 
-                handleSearch = {handleSearch}
+                handleSubmit = {handleSubmit}
+                searchData = {searchData}
+                setSearchData = {setSearchData}
             />
             <CardInfo 
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}            />
+                fetchedCard = {fetchedCard}
+            />
         </div>
     )
 

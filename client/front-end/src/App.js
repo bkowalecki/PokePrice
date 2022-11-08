@@ -3,6 +3,7 @@ import './App.css';
 import pokemon from 'pokemontcgsdk'
 import CardSearch from './Components/UpperPanel/CardSearch/CardSearch'
 import CardInfo from './Components/UpperPanel/CardInfo/CardInfo'
+import UpperPanelContainer from './Components/UpperPanel/UpperPanelContainer/UpperPanelContainer';
 
 function App() {
 
@@ -15,22 +16,12 @@ function App() {
 
 
       <div className="Dashboard">
-        <div className="upper-panel">
-          <div className="card-search-component">
-            <CardSearch />
-          </div>
-          <div className="card-info-component">
-           <CardInfo /> 
-          </div>
-        </div>
+        <UpperPanelContainer/>
 
         <div className='lower-panel'>
-
         </div>
 
-
       </div>
-
 
     </div>
   );
