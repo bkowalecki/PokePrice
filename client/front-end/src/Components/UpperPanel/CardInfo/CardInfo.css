@@ -1,110 +1,42 @@
 
-.card-input{
-    flex: 1;
-    color: black;
-    background-color: blue;
-    display: flex;
-    flex-direction: column;
-    /* align-items: left; */
-    font-size: 1.5rem;
-    font-style: italic;
-    justify-content: space-evenly;
-    margin: 0 auto;
-}
-.card-input-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    /* margin: 0 10%; */
-}
-
-.card-input-title{
-   flex: 1;
-   /* margin: 1rem;; */
-   color: red;
-   /* font-family: 'Pokemon Solid', sans-serif; */
-   /* font-size: 1rem; */
-   font-weight: 500;
-   /* width:100%; */
-   /* justify-content: left; */
-}
-
-.card-text-input{
-    flex: 1;
-    /* padding: 5px; */
-    /* margin: 1rem; */
-    background-color: blue;
-    font-style: italic;
-    margin:5px;
-    /* font-size: 1rem; */
-    /* font-weight: 500; */
-    color: yellow;
-    /* border-style: solid; */
-    background-color: red;
-    /* border-color: blue; */
-    /* margin: 0% 1%; */
-}
-
-.search-btn{
-    background-color: yellow;
-}
-
 
 .card-window{
-    /* animation: ease-in 1s linear 0; */
-    flex: 2;
+    animation: ease-in 1s linear 0;
+    flex: 1;
     display: flex;
-    align-content: center;
-    justify-content: center;
+    width:250px;
+    justify-content:center;
     align-items: center;
-    padding: 10px;
+    background-color: #408861;
 }
 
 .card-img{
-    flex: 1;
+    /* flex: 1; */
     justify-content: center;
+    animation: myfirst 5s linear 2s infinite alternate;
     align-items: center;
-    min-width:238px;
-    max-width:238px;
-    min-height: 332px;
-    max-height: 332px;
-}
-
-.search-container{
-    display: flex;
-    flex-direction: row;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .card-info{
-    flex:1;
+    /* flex:1; */
     display: flex;
     flex-direction: column;
     background-color: blue;
     color: yellow;
+    font-size: 1.5rem;
 }
 
 .info-chunk{
-    border: 1px solid red;
+    font-size: 1.5rem;
 }
 
-/* .container {
-    border: 1px solid silver;
-    width: 150px;
-  }
-  
-  .item {
-    cursor: pointer;
-  }
-  
-  .item:hover {
-    color: blue;
-  }
-  
-  input {
-    width: 300px;
-  } */
 
-@keyframes example {
-    from {background-color: red;}
-    to {background-color: yellow;}
+@keyframes myfirst {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
   }

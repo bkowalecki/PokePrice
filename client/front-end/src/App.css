@@ -1,11 +1,13 @@
 .App {
-  display: flex;
+  
 }
 
 
 .dashboard{
-  display: flex;
 
+  display: flex;
+  flex-direction: column;
+  background-color: black;
 }
 
 .upper-panel{

@@ -5,7 +5,7 @@ import './CardInfo.css'
 
 const CardInfo = ({fetchedCard}) => {
 
-    pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
+    // pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
 
 
 return(
@@ -18,12 +18,9 @@ return(
         />
         
         <div className='info-chunk'>
-            Price  = 
-            {fetchedCard.price}
+            Price: {fetchedCard.price}
         </div>
-        {/* <div>
-            {fetchedCard.price}
-        </div> */}
+        
     </div>
 )}
 

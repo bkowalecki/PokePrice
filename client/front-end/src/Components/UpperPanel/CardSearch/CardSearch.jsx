@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import pokemon from "pokemontcgsdk";
-import { useEffect } from "react";
 import "./CardSearch.css";
 
 // API Key for Database access
@@ -9,69 +8,6 @@ pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
 const CardSearch = (props) => {
   const { searchData, setSearchData, handleSubmit } = props;
 
-  // const [name, setName] = useState('');
-  // const [set, setSet] = useState('');
-  // const [number, setNumber] = useState('');
-  // const[cardUrl, setCardUrl] = useState('https://images.pokemontcg.io/base/1.png');
-  // const[cardPrice, setCardPrice] = useState("");
-  // const[cardId, setCardId] = useState("");
-
-  // const [setList, setSetList] = useState([]);
-  // const [setPokemonName, setNameList] = useState([]);
-
-  // const [setNumCardsInSet, setNumCards] = useState({});
-
-  // useEffect(() => {
-
-  //     // Set List
-  //     const set_list = []
-  //     // Populate set list
-  //     pokemon.set.all().then((cards) => {
-  //         for (let i = 0; i < cards.length; i++) {
-  //             set_list.push({
-  //                 label: cards[i].name,
-  //                 value: cards[i].name
-  //             })
-  //         }
-  //         setSetList(set_list)
-  //     })
-  //     }, []);
-
-  //    Card Search Functionality
-  //    const handleSubmit = event => {
-  //     console.log("In the function")
-
-  //     event.preventDefault(); // prevent page refresh
-
-  //     pokemon.card.all({ q: `name:${name} number:${number} set.name:${set}`}).then(result => {
-  //         for (let i = 0; i < result.length; i++) {
-  //             if(result[i].set.name.toUpperCase() == set.toUpperCase()){
-  //                 setCardUrl(result[i].images.small)
-  //                 setCardPrice(result[i].cardmarket.prices.trendPrice)
-  //                 setName(result[i].name)
-  //                 setCardId(result[i].id)
-  //                 setSet(result[i].set.name)
-  //                 console.log(result[i])
-
-  //             } console.log(set)
-  //         }
-
-  //     })
-  // };
-
-  //     childToParent(cardObject)
-
-  //     // 👇️ access input values here
-  //     // console.log('Name ', name);
-  //     // console.log('Set ', set);
-  //     // console.log('Number ', number);
-  //     // console.log('cardd ', cardUrl);
-
-  //     // 👇️ clear all input values in the form
-  //     // setName('');
-  //     // setSet('');
-  //     // setNumber('');
-console.log(props)
   return (
     <div className="search-container">
       <form className="card-input" onSubmit={handleSubmit}>
