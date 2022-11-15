@@ -14,7 +14,9 @@ const CardSearch = (props) => {
         {/* Input for Card Name */}
         <div className="card-input-container">
           <label className="card-input-title">Name</label>
-          <input
+          
+          <div className="search-input">
+            <input
             className="card-text-input"
             id="name"
             type="text"
@@ -23,7 +25,8 @@ const CardSearch = (props) => {
             onChange={(event) =>
               setSearchData({ ...searchData, name: event.target.value })
             }
-          />
+            />
+          </div>
         </div>
 
         {/* Input for Card Set */}
@@ -32,7 +35,7 @@ const CardSearch = (props) => {
           <input
             className="card-text-input"
             type="text"
-            placeholder="Chilling Reign"
+            placeholder="Base"
             value={searchData.set}
             onChange={(event) =>
                 setSearchData({ ...searchData, set: event.target.value })
@@ -46,7 +49,7 @@ const CardSearch = (props) => {
             className="card-text-input"
             id="number"
             type="text"
-            placeholder="48"
+            placeholder="4"
             value={searchData.number}
             onChange={(event) =>
                 setSearchData({ ...searchData, number: event.target.value })

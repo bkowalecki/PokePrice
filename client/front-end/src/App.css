@@ -1,20 +1,23 @@
-.App {
-  
+html{
+  background-color: #05668D;
 }
 
+.App {
+  background-color: #05668D
+}
 
 .dashboard{
 
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: #427AA1;
 }
 
 .upper-panel{
-  display: flex;
+  /* display: flex;
+  flex: 1; */
 }
 
 .lower-panel{
-  display: flex;
-
+  flex: 1;
 }

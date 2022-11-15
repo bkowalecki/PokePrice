@@ -1,0 +1,29 @@
+
+.form-wrapper{
+    display: flex; 
+    justify-content: center;
+    padding:50px;
+    background-color: #427AA1;
+    margin: 10% 20%;
+}
+
+form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-inner{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: space-around;
+    letter-spacing: 1px;
+}
+
+label{
+    display: flex;
+}
+
+.btn{
+}

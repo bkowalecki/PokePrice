@@ -18,7 +18,8 @@ const [searchData, setSearchData] = useState({
 
 const [fetchedCard, setFetchedCard] = useState({
     img: "https://images.pokemontcg.io/base/1.png",
-    price: ""
+    price: "",
+    id: null 
 })
 
 
@@ -35,17 +36,18 @@ const handleSubmit = event => {
     pokemon.card.all({ q: `name:${searchData.name} number:${searchData.number}`}).then(result => {
         for (let i = 0; i < result.length; i++) {
             console.log(result[i])
-            if(result[i].set.name.toUpperCase() == searchData.set.toUpperCase()){
+            if(result[i].set.name.toUpperCase() === searchData.set.toUpperCase()){
                 setFetchedCard({
                     img: result[i].images.small,
-                    price: result[i].cardmarket.prices.trendPrice
+                    price: result[i].cardmarket.prices.trendPrice,
+                    id: result[i].id
                 })
-            } console.log(searchData.name)
+            } 
         }
         
     })
 };
-
+//console.log({foo:fetchedCard})
     return(
         <div className='upper-panel-container'>
             <CardSearch 

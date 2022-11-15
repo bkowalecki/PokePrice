@@ -1,5 +1,7 @@
 .upper-panel-container{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    height: 475px;
+    margin: 0 auto;
+    max-width: 775px;
 }

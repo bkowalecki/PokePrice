@@ -1,0 +1,11 @@
+.portfolio{
+    color:black;
+    background-color: #EBF2FA;
+    border-top: solid black 2px;
+}
+
+.portfolio-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
