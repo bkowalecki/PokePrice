@@ -2,14 +2,10 @@ import { useState } from "react";
 import pokemon from "pokemontcgsdk";
 import "./CardInfo.css";
 
-const CardInfo = ({ fetchedCard }) => {
+const CardInfo = ({ fetchedCard, searchData, addCardToPortfolio }) => {
   // pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
 
-
-const addCardToPortfolio = () =>{
-    
-}
-
+  console.log(fetchedCard)
   return (
     <div className="card-info-wrapper">
       {fetchedCard.id !== null ? (
@@ -29,7 +25,7 @@ const addCardToPortfolio = () =>{
             <div>
                 ${fetchedCard.price}
             </div>
-            <button onclick={addCardToPortfolio} className="add-card-btn">Add card</button>
+            <button onClick={addCardToPortfolio} className="add-card-btn">Add card</button>
           </div>
 
         </div>
@@ -37,7 +33,6 @@ const addCardToPortfolio = () =>{
         <div className="card-window">
           <img
             className="card-img"
-            style={{ animation: "flash 1.5s .5s" }}
             src={fetchedCard.img}
             alt="new"
           />

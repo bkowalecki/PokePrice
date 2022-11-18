@@ -1,11 +1,48 @@
 .portfolio{
     color:black;
-    background-color: #EBF2FA;
+    background-color: slategray;
     border-top: solid black 2px;
+    
 }
 
 .portfolio-wrapper{
     display: flex;
     justify-content: center;
-    align-items: center;
+    overflow-y: scroll;
 }
+
+.card-img-portfolio{
+    width:75px;
+    
+    /* max-width: 50px; */
+}
+
+.portfolio-table{
+    /* display: flex;
+    flex-direction: column; */
+    width:800px;
+}
+
+.card-img-portfolio-container{
+    display: flex;
+    justify-content: center;
+}
+
+.table-row{
+
+}
+
+.tch{
+    padding: 25px;
+    font-size: 4vh;
+    
+}
+
+.tc{
+   text-align: center;
+}
+
+/* .card-img-portfolio-container{
+    width: 50px;
+    max-width: 50px;
+} */

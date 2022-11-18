@@ -12,6 +12,23 @@ html{
   flex-direction: column;
   background-color: #427AA1;
 }
+.header-banner{
+  background-color: white;
+  border-bottom: 2px black solid;
+  font-weight: 300;
+  font-size: 5vh;
+  width: 100%;
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-btn{
+  cursor: pointer;
+  margin-right: 25px;
+  font-size: 3vh;
+}
 
 .upper-panel{
   /* display: flex;
@@ -20,4 +37,6 @@ html{
 
 .lower-panel{
   flex: 1;
+  background-color: slategray;
+
 }

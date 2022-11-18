@@ -1,15 +1,12 @@
 import Portfolio from "../Portfolio/Portfolio";
 
-const LowerPanelContainer = (props) => {
+const LowerPanelContainer = ({user}) => {
 
-    // const user = props;
-
-    // console.log(user)
 
 
 return(
     <div className="portfolio">
-        <Portfolio props = {props}/>
+        {/* <Portfolio user = {user}/> */}
     </div>
 )
 

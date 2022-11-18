@@ -20,7 +20,7 @@ const CardSearch = (props) => {
             className="card-text-input"
             id="name"
             type="text"
-            placeholder="Charizard"
+            placeholder="Pikachu"
             value={searchData.name}
             onChange={(event) =>
               setSearchData({ ...searchData, name: event.target.value })
