@@ -56,8 +56,14 @@ export async function deleteUser(db, user) {
 }
 
 // Add card to user portfolio
-export async function addCard() {
+export async function addCard(db, user, fetchedCardId) {
   
+  const docRef = doc(db, "Users", user.id);
+
+  await updateDoc(docRef, {
+    portfolio: arrayUnion(fetchedCardId)
+});
+
 }
 
 // Delete card from user portfolio

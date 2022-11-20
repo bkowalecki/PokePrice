@@ -80,6 +80,8 @@ function App() {
 
   // Login function
   const login = async (details) => {
+   
+   console.log({dbRef})
     // Look for log-in match
     const foundEntry = dbRef.find(
       (entry) =>
@@ -93,6 +95,7 @@ function App() {
         username: foundEntry.username,
         password: foundEntry.password,
         portfolio: foundEntry.portfolio,
+        id: foundEntry.id
       });
     }
 
@@ -119,11 +122,14 @@ function App() {
     if (foundEntry) {
       alert("Username taken");
     } else {
-      await addUser(db, details);
+      const userDocRef = await addUser(db, {...details, portfolio:[]});
+      
+      console.log({userDocRef})
       setUser({
         username: details.username,
         password: details.password,
         portfolio: [],
+        id: userDocRef.id
       });
     }
   };
@@ -143,7 +149,7 @@ function App() {
   const addCardToPortfolio = async () => {
     // const newCard = await addCard(db, details);
     await addCard(db, user, fetchedCard.id);
-    setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
+    // setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
     updatePortfolio();
   };
 
@@ -172,7 +178,7 @@ function App() {
   };
 
   const updatePortfolio = async () => {
-    const tempPortfolio = [...cardPortfolio];
+    const tempPortfolio = [];
     for(const id of user.portfolio) {
 
       const card = await pokemon.card.find(id)
@@ -185,6 +191,8 @@ function App() {
         cardNumber: card.number,
         cardId: card.id,
       };
+      
+
       tempPortfolio.push(tempCard);
       
     };
