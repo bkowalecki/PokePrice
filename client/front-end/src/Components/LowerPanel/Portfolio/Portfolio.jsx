@@ -1,10 +1,13 @@
 import React from 'react'
 import pokemon from 'pokemontcgsdk'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import './Portfolio.css'
 
-const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, cardPortfolio, setCardPortfolio}) => {
+const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, cardPortfolio, setCardPortfolio, updatePortfolio}) => {
 
+    const heading = ['Image', 'Price', 'Name', 'Set', 'Number'];
+
+    const column = null;
 
     // Go through user.portfolio
     // Grab each id and query
@@ -14,85 +17,109 @@ const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, car
     // cardPortfolio = [{"name":name,...}, {"name":name,...}]
     // const [cardPortfolio, setCardPortfolio] = useState([])
 
-    // console.log(cardPortfolio.length)
+    console.log(cardPortfolio)
+
+    // Table headings
+    const thData = () =>{
+        return heading.map((data) =>{
+            return <th className='portfolio-heading' key={data}>{data}</th> 
+        })
+    }
+
+    const tdData = () => {
+
+        if(cardPortfolio.length === 0){
+            return(
+                <tr><td>Empty Portfolio</td></tr>
+                
+            )
+        }
+
+        const column = Object.keys(cardPortfolio[0])
+
+        console.log({cardPortfolio})
+        return cardPortfolio.map((data) => {
+        return(
+            <tr>
+                {
+                    column.map((v) => {
+                       if(v === "cardImg"){
+                        return <td>
+                            <img
+                                className='card-img-portfolio'
+                                src={data[v]} 
+                            />
+                            </td>
+                       }
+                       else if(v === "cardId"){
+                        return 
+                       }
+                        return <td className='table-data'>{data[v]}</td>
+                    })
+                }
+            </tr>
+        )
+        })
+
+        
+
+
+    }
 
     useEffect(() => {
+        updatePortfolio();
     
-        // for (let i = 0; i < 2; i++) {
-        //     pokemon.card.find(user.portfolio[i]).then(card => {
-                
-        //         setTempCard({
-        //             cardName : card.name,
-        //             cardId : card.id, 
-        //             cardPrice : card.cardmarket.prices.trendPrice,
-        //             cardImg : card.images.small, 
-        //             cardSet : card.set.name, 
-        //             cardNumber : card.number  
-        //         })  
-        //         // alert(cardPortfolio)
-                    
-        //     })
-        // setCardPortfolio(current => [...current, tempCard]);  
-               
-        // }
-        // setCardPortfolio(current => [...current, tempCard]); 
-//   user.portfolio.forEach(id => {
-//         console.log(id)
+    // user.portfolio.forEach(id => {
+    // pokemon.card.find(id).then(card => {
+    //   console.log(card)
+    
+    //     const tempCard = {
+    //         cardImg : card.images.small,
+    //         cardPrice : card.cardmarket.prices.trendPrice,
+    //         cardName : card.name,
+    //         cardSet : card.set.name, 
+    //         cardNumber : card.number,
+    //         cardId : card.id,  
+    //     }  
+    //     setCardPortfolio([...cardPortfolio, tempCard]) 
+    // })
+
+
+    // });
+    
+
+}, []);
+
+// const updatePortfolio = () => {
+//     user.portfolio.forEach(id => {
 //         pokemon.card.find(id).then(card => {
+//           console.log(card)
         
-//             setTempCard({
-//                 cardName : card.name,
-//                 cardId : card.id, 
+//             const tempCard = {
+//                 cardImg : card.images.small,
 //                 cardPrice : card.cardmarket.prices.trendPrice,
-//                 cardImg : card.images.small, 
+//                 cardName : card.name,
 //                 cardSet : card.set.name, 
-//                 cardNumber : card.number  
-//             })        
+//                 cardNumber : card.number,
+//                 cardId : card.id,  
+//             }  
+//             setCardPortfolio([...cardPortfolio, tempCard]) 
 //         })
-
-//         setCardPortfolio(current => [...current, tempCard]);    
-        
-//     });
-
-      }, []);
-
-    // console.log("here")
-
-    // console.log(tempCard)
-
-  
-
-    // console.log(cardPortfolio)
+//         });
+// }
 
 
-
-// Dummy Data
-//[{name: name, ...}, {}, {}, {}]
 
   return (
     <div className='portfolio-wrapper'>
             <table className='portfolio-table'>
-                <tr className='table-row'>
-                    <th className='tch'>Image</th>
-                    <th className='tch'>Name</th>
-                    <th className='tch'>Set</th>
-                    <th className='tch'>Number</th>
-                    <th className='tch'>Price</th>
-                    <th className='tch'>ID</th>
-                </tr>
-                <tr className='table-row'>
-                    <td className='card-img-portfolio-container table-cell'>   
-                        <img
-                        className="card-img-portfolio"
-                        src={tempCard.cardImg}
-                        />
-                    </td>
-                    <td className='tc'>{tempCard.cardName}</td>
-                    <td className='tc'>{tempCard.cardSet}</td>
-                    <td className='tc'>{tempCard.cardNumber}</td>
-                    <td className='tc'>{tempCard.cardPrice}</td>
-                    <td className='tc'>{tempCard.cardId}</td>
-                </tr>
+                <thead className='table-row'>
+                    <tr>{thData()}</tr>
+                </thead>
+                <tbody>
+                    {tdData()}
+                </tbody>
+              
             </table>
 
     </div>

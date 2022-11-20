@@ -1,14 +1,14 @@
-.portfolio{
-    color:black;
-    background-color: slategray;
-    border-top: solid black 2px;
-    
-}
 
 .portfolio-wrapper{
     display: flex;
     justify-content: center;
+    text-align: center;
     overflow-y: scroll;
+    color:black;
+    background-color: slategray;
+    border-left: solid black 2px;
+    height: 275px;
+    width: 75%;
 }
 
 .card-img-portfolio{
@@ -21,6 +21,15 @@
     /* display: flex;
     flex-direction: column; */
     width:800px;
+}
+
+.portfolio-heading{
+    padding:10px;
+    outline-style: solid;
+}
+
+.table-data{
+    font-size: 3vh;
 }
 
 .card-img-portfolio-container{

@@ -8,7 +8,6 @@ function LoginForm({ login, register, setUser }) {
   const [details, setDetails] = useState({
     username: "",
     password: "",
-    portfolio:[]
   });
 
   const [mode, setMode] = useState("");

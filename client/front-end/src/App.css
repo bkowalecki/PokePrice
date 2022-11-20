@@ -12,6 +12,7 @@ html{
   flex-direction: column;
   background-color: #427AA1;
 }
+
 .header-banner{
   background-color: white;
   border-bottom: 2px black solid;
@@ -31,12 +32,17 @@ html{
 }
 
 .upper-panel{
-  /* display: flex;
-  flex: 1; */
+  display: flex;
+  justify-content: center;
+  height: 450px;
+  margin: 0 auto;
+  max-width: 775px;
 }
 
 .lower-panel{
   flex: 1;
   background-color: slategray;
-
+  display: flex ;
+  justify-content: center;
+  border: 2px solid black
 }

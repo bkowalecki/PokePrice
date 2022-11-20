@@ -6,11 +6,11 @@ import "./CardSearch.css";
 pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
 
 const CardSearch = (props) => {
-  const { searchData, setSearchData, handleSubmit } = props;
+  const { searchData, setSearchData, handleSearchSubmit } = props;
 
   return (
     <div className="search-container">
-      <form className="card-input" onSubmit={handleSubmit}>
+      <form className="card-input" onSubmit={handleSearchSubmit}>
         {/* Input for Card Name */}
         <div className="card-input-container">
           <label className="card-input-title">Name</label>

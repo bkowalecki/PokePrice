@@ -1,19 +1,33 @@
 import "./App.css";
 import { getUsers, addUser, db, addCard } from "./firebase";
+
 import pokemon from "pokemontcgsdk";
+import Header from "./Components/Header/Header";
+import CardSearch from "./Components/UpperPanel/CardSearch/CardSearch";
+import CardInfo from "./Components/UpperPanel/CardInfo/CardInfo";
 import LoginForm from "./Components/Login/LoginForm";
-import UpperPanelContainer from "./Components/UpperPanel/UpperPanelContainer/UpperPanelContainer";
-import LowerPanelContainer from "./Components/LowerPanel/LowerPanelContainer/LowerPanelContainer";
 import Portfolio from "./Components/LowerPanel/Portfolio/Portfolio";
 import { useEffect, useState } from "react";
-import { deleteDoc, doc } from "firebase/firestore/lite";
+import {
+  deleteDoc,
+  doc,
+  getDocs,
+  addDoc,
+  collection,
+  arrayUnion,
+  updateDoc,
+} from "firebase/firestore/lite";
+import { async } from "@firebase/util";
 
 function App() {
   // API key to access pokemon card api
   pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
 
   // Database State Variable
-  const [dbRef, setdbRef] = useState([]); 
+  const [dbRef, setdbRef] = useState([]);
+
+  // User collections
+  const usersCollectionRef = collection(db, "Users");
 
   // User State
   const [user, setUser] = useState({
@@ -31,40 +45,42 @@ function App() {
 
   // Fetched Card State
   const [fetchedCard, setFetchedCard] = useState({
-    img: "https://images.pokemontcg.io/base/1.png",
+    img: "",
     price: "",
     id: null,
+    name: "",
+    set: "",
+    number: "",
   });
 
   // State for temp cards when populating portfolio
   const [tempCard, setTempCard] = useState({
-    cardName : "",
-    cardId : "",
-    cardPrice : "",
-    cardImg : "",
-    cardSet : "",
-    cardNumber : ""
-})
+    cardName: "",
+    cardId: "",
+    cardPrice: 0,
+    cardImg: "",
+    cardSet: "",
+    cardNumber: "",
+  });
 
-const [cardPortfolio, setCardPortfolio] = useState([])
-
+  // User's portfolio
+  // Contains array of fetched card objects
+  const [cardPortfolio, setCardPortfolio] = useState([]);
 
   // Allows for "side effects"
   // Runs on every render
   useEffect(() => {
-
     // Fetch list of users
-    async function fetchDB() {
-      const userList = await getUsers(db);
-      setdbRef(userList);
-    }
+    const fetchDB = async () => {
+      const userList = await getDocs(usersCollectionRef);
+      setdbRef(userList.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
     fetchDB();
-    
   }, []);
-
 
   // Login function
   const login = async (details) => {
+    // Look for log-in match
     const foundEntry = dbRef.find(
       (entry) =>
         entry.username === details.username &&
@@ -76,16 +92,20 @@ const [cardPortfolio, setCardPortfolio] = useState([])
       setUser({
         username: foundEntry.username,
         password: foundEntry.password,
-        portfolio: foundEntry.portfolio
+        portfolio: foundEntry.portfolio,
       });
-
-  
     }
 
     //login failure
     else {
       alert("Login Failed. Try again.");
     }
+  };
+
+  // Logs user out by setting username to ""
+  const logout = (e) => {
+    e.preventDefault();
+    setUser({ ...user, username: "" });
   };
 
   const register = async (details) => {
@@ -120,58 +140,95 @@ const [cardPortfolio, setCardPortfolio] = useState([])
     }
   };
 
-  const addCardToPortfolio = async (details) => {
+  const addCardToPortfolio = async () => {
     // const newCard = await addCard(db, details);
-    alert("added card");
-    await addCard(db, details, fetchedCard.id);
-    //setUser({ ...details, portfolio: [fetchedCard.id] });
+    await addCard(db, user, fetchedCard.id);
+    setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
+    updatePortfolio();
   };
 
-  // Logs user out by setting username to ""
-  const logout = (e) => {
-    e.preventDefault();
-    setUser({...user, username:""})
+  // Runs when search button clicked
+  const handleSearchSubmit = async (event) => {
+    // prevent page refresh
+    event.preventDefault();
+
+    //Query to Pokemon API
+    await pokemon.card
+      .all({ q: `name:${searchData.name} number:${searchData.number}` })
+      .then((result) => {
+        result.forEach((cardRef) => {
+          if (cardRef.set.name.toUpperCase() === searchData.set.toUpperCase()) {
+            setFetchedCard({
+              img: cardRef.images.small,
+              price: cardRef.cardmarket.prices.trendPrice,
+              id: cardRef.id,
+              name: cardRef.name,
+              set: cardRef.set.name,
+              number: cardRef.number,
+            });
+          }
+        });
+      });
   };
 
+  const updatePortfolio = async () => {
+    const tempPortfolio = [...cardPortfolio];
+    for(const id of user.portfolio) {
+
+      const card = await pokemon.card.find(id)
+
+      const tempCard = {
+        cardImg: card.images.small,
+        cardPrice: card.cardmarket.prices.trendPrice,
+        cardName: card.name,
+        cardSet: card.set.name,
+        cardNumber: card.number,
+        cardId: card.id,
+      };
+      tempPortfolio.push(tempCard);
+      
+    };
+    setCardPortfolio(tempPortfolio);
+  };
 
   return (
     <div className="App">
       {user.username !== "" ? (
+        // Shows Home Page
         <div className="dashboard">
-          <div className="header-banner">
-            <div>Hello, {user.username}</div>
-            <div className="logout-btn" onClick={logout}>
-              Logout
-            </div>
-          </div>
+          <Header user={user} logout={logout} />
+
           <div className="upper-panel">
-            <UpperPanelContainer
-              props={setUser}
+            <CardSearch
+              handleSearchSubmit={handleSearchSubmit}
               searchData={searchData}
               setSearchData={setSearchData}
+            />
+            <CardInfo
               fetchedCard={fetchedCard}
-              setFetchedCard={setFetchedCard}
+              searchData={searchData}
+              user={user}
+              setUser={setUser}
+              updatePortfolio={updatePortfolio}
               addCardToPortfolio={addCardToPortfolio}
             />
           </div>
+
           <div className="lower-panel">
             <Portfolio
-              addCardToPortfolio={addCardToPortfolio}
               setUser={setUser}
               user={user}
-              tempCard = {tempCard}
-              setTempCard = {setTempCard}
-              cardPortfolio = {cardPortfolio}
-              setCardPortfolio = {setCardPortfolio}
+              tempCard={tempCard}
+              setTempCard={setTempCard}
+              cardPortfolio={cardPortfolio}
+              setCardPortfolio={setCardPortfolio}
+              updatePortfolio={updatePortfolio}
             />
           </div>
         </div>
       ) : (
-        <LoginForm 
-        login={login} 
-        register={register}
-        setUser={setUser} 
-        />
+        //Shows Login/Register Page
+        <LoginForm login={login} register={register} setUser={setUser} />
       )}
     </div>
   );
