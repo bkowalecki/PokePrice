@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    background-color: #408861;
+    background-color: #589E7D;
     padding: 50px;
 }
 
@@ -38,17 +38,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-weight: bold;
 }
 
 .add-card-btn{
     
     /* margin: 0 auto; */
     /* display: flex; */
-    border-radius: 15%;
+    /* border-radius: 15%; */
     /* justify-content: center; */
     background-color: #000000;
-    color: #589E7D;
-    font-size: 2rem;
+    color: white;
+    font-size: 1rem;
     cursor: pointer;
     padding:10px;
     

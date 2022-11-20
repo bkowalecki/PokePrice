@@ -1,9 +1,10 @@
 .header-banner{
-    background-color: white;
-    border-bottom: 2px black solid;
+    background-color: black;
+    color: white;
+    /* border-bottom: 1px black solid; */
     font-weight: 300;
-    font-size: 5vh;
-    width: 100%;
+    font-size: 4.5vh;
+    /* width: 100%; */
     cursor: default;
     display: flex;
     justify-content: space-between;

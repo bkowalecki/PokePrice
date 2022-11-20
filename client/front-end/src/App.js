@@ -149,9 +149,11 @@ function App() {
   const addCardToPortfolio = async () => {
     // const newCard = await addCard(db, details);
     await addCard(db, user, fetchedCard.id);
-    // setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
+    setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
     updatePortfolio();
   };
+
+  console.log(user)
 
   // Runs when search button clicked
   const handleSearchSubmit = async (event) => {

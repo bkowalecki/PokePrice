@@ -54,6 +54,9 @@ const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, car
                        else if(v === "cardId"){
                         return 
                        }
+                       else if(v === "cardPrice"){
+                        return <td className='table-data'>${data[v]}</td>
+                       }
                         return <td className='table-data'>{data[v]}</td>
                     })
                 }

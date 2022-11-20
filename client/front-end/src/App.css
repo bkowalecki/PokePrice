@@ -10,19 +10,7 @@ html{
 
   display: flex;
   flex-direction: column;
-  background-color: #427AA1;
-}
-
-.header-banner{
-  background-color: white;
-  border-bottom: 2px black solid;
-  font-weight: 300;
-  font-size: 5vh;
-  width: 100%;
-  cursor: default;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: linear-gradient(to bottom, #00b09b, #96c93d); 
 }
 
 .logout-btn{
@@ -34,15 +22,29 @@ html{
 .upper-panel{
   display: flex;
   justify-content: center;
-  height: 450px;
+  flex-direction: row;
+  height: 425px;
   margin: 0 auto;
   max-width: 775px;
+  
 }
 
 .lower-panel{
   flex: 1;
-  background-color: slategray;
+  background-color: black;
   display: flex ;
   justify-content: center;
-  border: 2px solid black
+  padding: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  
+
+ /* .upper-panel{
+  flex-direction: column;
+ } */
+
+ 
+
 }

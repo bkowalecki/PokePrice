@@ -4,9 +4,10 @@
     justify-content: center;
     text-align: center;
     overflow-y: scroll;
-    color:black;
-    background-color: slategray;
-    border-left: solid black 2px;
+    scrollbar-color: red red;
+    color:#96c93d;
+    background-color: black;
+    border-left: solid #96c93d 2px;
     height: 275px;
     width: 75%;
 }
