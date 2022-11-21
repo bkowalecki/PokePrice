@@ -1,5 +1,5 @@
 import "./App.css";
-import { getUsers, addUser, db, addCard } from "./firebase";
+import { getUsers, addUser, db, addCard, deleteCard } from "./firebase";
 
 import pokemon from "pokemontcgsdk";
 import Header from "./Components/Header/Header";
@@ -153,6 +153,15 @@ function App() {
     updatePortfolio();
   };
 
+  const deleteCardFromPortfolio = async () => {
+    
+    // Delete card from DB
+    await deleteCard(db, user, fetchedCard.id)
+    // setUser(...user => user.portfolio.filter(data) => fetchedCard.id !== data.id);
+
+
+  }
+
   console.log(user)
 
   // Runs when search button clicked
@@ -194,7 +203,6 @@ function App() {
         cardId: card.id,
       };
       
-
       tempPortfolio.push(tempCard);
       
     };
@@ -221,6 +229,7 @@ function App() {
               setUser={setUser}
               updatePortfolio={updatePortfolio}
               addCardToPortfolio={addCardToPortfolio}
+              deleteCardFromPortfolio={deleteCardFromPortfolio}
             />
           </div>
 

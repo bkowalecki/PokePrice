@@ -59,6 +59,7 @@ const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, car
                        }
                         return <td className='table-data'>{data[v]}</td>
                     })
+                    
                 }
             </tr>
         )

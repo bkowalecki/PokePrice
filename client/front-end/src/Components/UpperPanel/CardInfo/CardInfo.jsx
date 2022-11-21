@@ -5,7 +5,7 @@ import defaultImg from '../../../pokemon_card_back.jpg'
 
 import "./CardInfo.css";
 
-const CardInfo = ({ fetchedCard, searchData, user, setUser, updatePortfolio, addCardToPortfolio}) => {
+const CardInfo = ({ fetchedCard, searchData, user, setUser, updatePortfolio, addCardToPortfolio, deleteCardFromPortfolio}) => {
   // pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
 
   console.log(fetchedCard)
@@ -41,7 +41,10 @@ console.log(user)
             <div>
                 ${fetchedCard.price}
             </div>
-            <button onClick={addCardToPortfolio} className="add-card-btn">Add card</button>
+            <div className="btn-container">
+                <button onClick={addCardToPortfolio} className="add-card-btn">Add card</button>
+                <button onClick={deleteCardFromPortfolio} className="remove-card-btn">Remove card</button>
+            </div>
           </div>
 
         </div>

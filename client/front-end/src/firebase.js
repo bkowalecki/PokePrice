@@ -67,12 +67,12 @@ export async function addCard(db, user, fetchedCardId) {
 }
 
 // Delete card from user portfolio
-export async function deleteCard(db, cardID, user) {
+export async function deleteCard(db, user, fetchedCardId) {
   try {
-    const docRef = doc(db, "Users", user);
+    const docRef = doc(db, "Users", user.id);
 
     await updateDoc(docRef, {
-      portfolio: arrayRemove(cardID),
+      portfolio: arrayRemove(fetchedCardId),
     });
   } catch (e) {
     console.error("Error deleting card", e);
