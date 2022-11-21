@@ -35,6 +35,7 @@ html{
   display: flex ;
   justify-content: center;
   padding: 5px;
+  scrollbar-color: red red;
 }
 
 
