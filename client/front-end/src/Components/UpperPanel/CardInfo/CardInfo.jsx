@@ -5,22 +5,8 @@ import defaultImg from '../../../pokemon_card_back.jpg'
 
 import "./CardInfo.css";
 
-const CardInfo = ({ fetchedCard, searchData, user, setUser, updatePortfolio, addCardToPortfolio, deleteCardFromPortfolio}) => {
-  // pokemon.configure({apiKey: 'd47970f2-3447-4b91-92f8-8b3427ebb339'})
+const CardInfo = ({ fetchedCard, addCardToPortfolio, deleteCardFromPortfolio}) => {
 
-  console.log(fetchedCard)
-//   console.log(addCardToPortfolio)
-
-//   const addCardToPortfolio = async (user) => {
-//     // const newCard = await addCard(db, details);
-//     alert("added card");
-//     await addCard(db, user, fetchedCard.id);
-//     setUser(...user.portfolio, fetchedCard.id)
-//     //setUser({ ...details, portfolio: [fetchedCard.id] });
-//   };
-
-
-console.log(user)
   return (
     <div className="card-info-wrapper">
       {fetchedCard.id !== null ? (

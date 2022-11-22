@@ -3,7 +3,7 @@ import pokemon from 'pokemontcgsdk'
 import { useEffect } from 'react'
 import './Portfolio.css'
 
-const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, cardPortfolio, setCardPortfolio, updatePortfolio}) => {
+const Portfolio = ({cardPortfolio, updatePortfolio}) => {
 
     const heading = ['Image', 'Price', 'Name', 'Set', 'Number'];
 
@@ -17,7 +17,7 @@ const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, car
     // cardPortfolio = [{"name":name,...}, {"name":name,...}]
     // const [cardPortfolio, setCardPortfolio] = useState([])
 
-    console.log(cardPortfolio)
+    // console.log(cardPortfolio)
 
     // Table headings
     const thData = () =>{
@@ -30,7 +30,7 @@ const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, car
 
         if(cardPortfolio.length === 0){
             return(
-                <tr><td>Empty Portfolio</td></tr>
+                <tr><td>No cards to show</td></tr>
                 
             )
         }
@@ -64,55 +64,12 @@ const Portfolio = ({addCardToPortfolio,setUser, user, tempCard, setTempCard, car
             </tr>
         )
         })
-
-        
-
-
     }
 
     useEffect(() => {
+        tdData()
         updatePortfolio();
-    
-    // user.portfolio.forEach(id => {
-    // pokemon.card.find(id).then(card => {
-    //   console.log(card)
-    
-    //     const tempCard = {
-    //         cardImg : card.images.small,
-    //         cardPrice : card.cardmarket.prices.trendPrice,
-    //         cardName : card.name,
-    //         cardSet : card.set.name, 
-    //         cardNumber : card.number,
-    //         cardId : card.id,  
-    //     }  
-    //     setCardPortfolio([...cardPortfolio, tempCard]) 
-    // })
-
-
-    // });
-    
-
-}, []);
-
-// const updatePortfolio = () => {
-//     user.portfolio.forEach(id => {
-//         pokemon.card.find(id).then(card => {
-//           console.log(card)
-        
-//             const tempCard = {
-//                 cardImg : card.images.small,
-//                 cardPrice : card.cardmarket.prices.trendPrice,
-//                 cardName : card.name,
-//                 cardSet : card.set.name, 
-//                 cardNumber : card.number,
-//                 cardId : card.id,  
-//             }  
-//             setCardPortfolio([...cardPortfolio, tempCard]) 
-//         })
-//         });
-// }
-
-
+    }, [cardPortfolio]);
 
   return (
     <div className='portfolio-wrapper'>

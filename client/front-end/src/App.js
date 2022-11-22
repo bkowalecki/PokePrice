@@ -148,17 +148,33 @@ function App() {
 
   const addCardToPortfolio = async () => {
     // const newCard = await addCard(db, details);
-    await addCard(db, user, fetchedCard.id);
-    setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
-    updatePortfolio();
+    
+
+    let alreadyPresent = false;
+    //TO-DO
+    for (const card in user.portfolio){
+      
+      if(user.portfolio[card] === fetchedCard.id){
+        alreadyPresent = true;
+      }
+    }
+    //Deal with adding a duplicate card
+    if(!alreadyPresent){
+      await addCard(db, user, fetchedCard.id);
+      setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
+      updatePortfolio();
+    }
+   
   };
 
   const deleteCardFromPortfolio = async () => {
     
     // Delete card from DB
     await deleteCard(db, user, fetchedCard.id)
-    // setUser(...user => user.portfolio.filter(data) => fetchedCard.id !== data.id);
+    setUser({...user, portfolio: user.portfolio.filter((card) => { return card !== fetchedCard.id})
+    })
 
+    updatePortfolio();
 
   }
 
@@ -203,8 +219,9 @@ function App() {
         cardId: card.id,
       };
       
-      tempPortfolio.push(tempCard);
-      
+      if(user.portfolio[id] !== tempCard.cardId){
+        tempPortfolio.push(tempCard);
+      }
     };
     setCardPortfolio(tempPortfolio);
   };
@@ -224,10 +241,6 @@ function App() {
             />
             <CardInfo
               fetchedCard={fetchedCard}
-              searchData={searchData}
-              user={user}
-              setUser={setUser}
-              updatePortfolio={updatePortfolio}
               addCardToPortfolio={addCardToPortfolio}
               deleteCardFromPortfolio={deleteCardFromPortfolio}
             />
@@ -235,19 +248,18 @@ function App() {
 
           <div className="lower-panel">
             <Portfolio
-              setUser={setUser}
-              user={user}
-              tempCard={tempCard}
-              setTempCard={setTempCard}
               cardPortfolio={cardPortfolio}
-              setCardPortfolio={setCardPortfolio}
               updatePortfolio={updatePortfolio}
             />
           </div>
         </div>
       ) : (
         //Shows Login/Register Page
-        <LoginForm login={login} register={register} setUser={setUser} />
+        <LoginForm 
+          login={login} 
+          register={register} 
+          setUser={setUser} 
+        />
       )}
     </div>
   );
