@@ -10,3 +10,38 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .logout-btn{
+    cursor: pointer;
+    margin-right: 25px;
+    font-size: 3vh;
+  }
+
+  .delete-user-btn{
+    color:white;
+    margin-right: 25px;
+    font-size: 3vh;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 700px) {
+  
+
+    .header-banner{
+      font-size: 3vh;
+      padding: 5px;
+      justify-content: space-between;
+    }
+
+    .logout-btn{
+      font-size: 2vh;
+      margin-right: 0px;
+    }
+
+    .delete-user-btn{
+      font-size: 2vh;
+      margin-right: 0px;
+    }
+     
+    
+ }

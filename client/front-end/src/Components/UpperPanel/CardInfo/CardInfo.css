@@ -1,5 +1,4 @@
 .card-info-wrapper{
-    flex: 1;
     display: flex;
     border-right: solid black 2px;
 }
@@ -11,7 +10,7 @@
     justify-content:center;
     align-items: center;
     background-color: #589E7D;
-    padding: 50px;
+    padding: 5px;
 }
 
 .img-wrapper{
@@ -82,3 +81,17 @@
 .remove-card-btn:hover{
     color: red;
 }
+
+
+@media only screen and (max-width: 700px) {
+  
+
+    .card-info-wrapper{
+     border: none;
+     padding: 10px;
+    }
+     
+    .card-window{
+        padding: 20px;
+    }
+ }

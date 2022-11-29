@@ -1,8 +1,7 @@
-/* CSS */
+
 
 .search-container{
     display: flex;
-    flex:1;
     border-right: solid black 2px;
     border-left: solid black 2px;
 }
@@ -57,12 +56,21 @@
     color: #FFFBFC;
     font-size: 2rem;
     cursor: pointer;
-    padding:10px;
+    /* padding:10px; */
+}
+
+.search-btn:hover{
+    color: #00b09b;
 }
 
 
+@media only screen and (max-width: 700px) {
+  
 
-@keyframes example {
-    from {background-color: red;}
-    to {background-color: yellow;}
-  }
+   .search-container{
+    border: none;
+    padding: 10px;
+   }
+    
+   
+}

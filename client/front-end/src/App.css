@@ -1,29 +1,27 @@
 html{
-  background-color: #05668D;
+  background-color: black;
+  border-bottom:#96c93d 1px solid;
 }
 
 .App {
-  background-color: #05668D
+
 }
 
 .dashboard{
-
   display: flex;
   flex-direction: column;
   background: linear-gradient(to bottom, #00b09b, #96c93d); 
 }
 
-.logout-btn{
-  cursor: pointer;
-  margin-right: 25px;
-  font-size: 3vh;
+.header{
+
 }
 
 .upper-panel{
   display: flex;
   justify-content: center;
   flex-direction: row;
-  height: 425px;
+  /* height: 425px; */
   margin: 0 auto;
   max-width: 775px;
   
@@ -32,18 +30,20 @@ html{
 .lower-panel{
   flex: 1;
   background-color: black;
-  display: flex ;
+
   justify-content: center;
   padding: 5px;
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   
 
- /* .upper-panel{
+ .upper-panel{
   flex-direction: column;
- } */
+  height: auto;
+  border: none;
+ }
 
  
 

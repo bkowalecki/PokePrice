@@ -28,8 +28,8 @@ const CardInfo = ({ fetchedCard, addCardToPortfolio, deleteCardFromPortfolio}) =
                 ${fetchedCard.price}
             </div>
             <div className="btn-container">
-                <button onClick={addCardToPortfolio} className="add-card-btn">Add card</button>
-                <button onClick={deleteCardFromPortfolio} className="remove-card-btn">Remove card</button>
+                <button onClick={addCardToPortfolio} className="add-card-btn">Add</button>
+                <button onClick={deleteCardFromPortfolio} className="remove-card-btn">Remove</button>
             </div>
           </div>
 
