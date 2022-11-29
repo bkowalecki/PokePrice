@@ -1,5 +1,5 @@
 import "./App.css";
-import { getUsers, addUser, db, addCard, deleteCard } from "./firebase";
+import { getUsers, addUser, db, addCard, deleteCard, deleteUser } from "./firebase";
 
 import pokemon from "pokemontcgsdk";
 import Header from "./Components/Header/Header";
@@ -35,6 +35,8 @@ function App() {
     password: "",
     portfolio: [],
   });
+  
+  const [cardPortfolio, setCardPortfolio] = useState([]);
 
   // Card Search Data State
   const [searchData, setSearchData] = useState({
@@ -53,23 +55,10 @@ function App() {
     number: "",
   });
 
-  // State for temp cards when populating portfolio
-  const [tempCard, setTempCard] = useState({
-    cardName: "",
-    cardId: "",
-    cardPrice: 0,
-    cardImg: "",
-    cardSet: "",
-    cardNumber: "",
-  });
-
-  // User's portfolio
-  // Contains array of fetched card objects
-  const [cardPortfolio, setCardPortfolio] = useState([]);
-
   // Allows for "side effects"
   // Runs on every render
   useEffect(() => {
+
     // Fetch list of users
     const fetchDB = async () => {
       const userList = await getDocs(usersCollectionRef);
@@ -81,7 +70,6 @@ function App() {
   // Login function
   const login = async (details) => {
    
-   console.log({dbRef})
     // Look for log-in match
     const foundEntry = dbRef.find(
       (entry) =>
@@ -134,7 +122,7 @@ function App() {
     }
   };
 
-  const deleteUser = async (details) => {
+  const deleteUserFromDB = async (details) => {
     const foundEntry = dbRef.find(
       (entry) => entry.username === details.username
     );
@@ -231,7 +219,13 @@ function App() {
       {user.username !== "" ? (
         // Shows Home Page
         <div className="dashboard">
-          <Header user={user} logout={logout} />
+          <div className="header">
+            <Header 
+            user={user} 
+            logout={logout} 
+            deleteUserFromDB = {deleteUserFromDB}  
+            />
+          </div>
 
           <div className="upper-panel">
             <CardSearch

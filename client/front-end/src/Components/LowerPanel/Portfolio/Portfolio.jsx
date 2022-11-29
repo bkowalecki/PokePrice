@@ -1,5 +1,4 @@
 import React from 'react'
-import pokemon from 'pokemontcgsdk'
 import { useEffect } from 'react'
 import './Portfolio.css'
 
@@ -8,6 +7,9 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
     const heading = ['Image', 'Price', 'Name', 'Set', 'Number'];
 
     const column = null;
+
+    let numberOfCards = 0;
+    let totalPortfolioValue = 0;
 
     // Go through user.portfolio
     // Grab each id and query
@@ -55,6 +57,8 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
                         return 
                        }
                        else if(v === "cardPrice"){
+                        // alert(data[v])
+                        totalPortfolioValue = totalPortfolioValue+data[v]
                         return <td className='table-data'>${data[v]}</td>
                        }
                         return <td className='table-data'>{data[v]}</td>
@@ -64,6 +68,7 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
             </tr>
         )
         })
+
     }
 
     useEffect(() => {
@@ -72,7 +77,21 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
     }, [cardPortfolio]);
 
   return (
-    <div className='portfolio-wrapper'>
+    <div className='portfolio'>
+        
+        <div className='portfolio-stats-wrapper'>
+                <div className='total-cards-wrapper'>
+                    <div>Cards</div>
+                    <div>{cardPortfolio.length}</div>
+                </div>
+
+                <div className='total-value-wrapper'>
+                        <div>Portfolio Value</div>
+                       <div>${totalPortfolioValue}</div> 
+                </div>
+        </div>
+
+        <div className='portfolio-wrapper'>
             <table className='portfolio-table'>
                 <thead className='table-row'>
                     <tr>{thData()}</tr>
@@ -80,8 +99,9 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
                 <tbody>
                     {tdData()}
                 </tbody>
-              
+            
             </table>
+        </div>
 
     </div>
 )
