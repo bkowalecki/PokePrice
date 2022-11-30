@@ -32,8 +32,7 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
 
         if(cardPortfolio.length === 0){
             return(
-                <tr><td>No cards to show</td></tr>
-                
+                <tr className='empty-row'><td className='empty-cell'>No cards to show</td></tr>
             )
         }
 
@@ -72,7 +71,7 @@ const Portfolio = ({cardPortfolio, updatePortfolio}) => {
     }
 
     useEffect(() => {
-        tdData()
+        // tdData()
         updatePortfolio();
     }, [cardPortfolio]);
 

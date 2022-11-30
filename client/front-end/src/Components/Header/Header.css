@@ -1,27 +1,34 @@
 .header-banner{
     background-color: black;
     color: white;
-    /* border-bottom: 1px black solid; */
     font-weight: 300;
     font-size: 4.5vh;
-    /* width: 100%; */
     cursor: default;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
+  .header-options{
+    display: flex;
+    font-size: 3vh;
+  }
+
   .logout-btn{
     cursor: pointer;
     margin-right: 25px;
-    font-size: 3vh;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding: 10px;
   }
 
   .delete-user-btn{
     color:white;
     margin-right: 25px;
-    font-size: 3vh;
     cursor: pointer;
+    padding: 10px;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
   }
 
   @media only screen and (max-width: 700px) {

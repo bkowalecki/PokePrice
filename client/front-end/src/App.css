@@ -1,6 +1,15 @@
 html{
   background-color: black;
-  border-bottom:#96c93d 1px solid;
+ 
+}
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: none;
+  border-radius: 0px;
+  border: none;
 }
 
 .App {
@@ -30,9 +39,6 @@ html{
 .lower-panel{
   flex: 1;
   background-color: black;
-
-  justify-content: center;
-  padding: 5px;
 }
 
 

@@ -3,7 +3,7 @@
     display: flex; 
     justify-content: center;
     padding:50px;
-    background-color: #427AA1;
+    background-color: #00b09b;
     margin: 10% 20%;
 }
 
@@ -35,7 +35,7 @@ form{
 }
 
 .register-to-login-link{
-
+text-align: center;
 
 }
 
