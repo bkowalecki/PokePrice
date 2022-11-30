@@ -1,5 +1,12 @@
 import "./App.css";
-import { getUsers, addUser, db, addCard, deleteCard, deleteUser } from "./firebase";
+import {
+  getUsers,
+  addUser,
+  db,
+  addCard,
+  deleteCard,
+  deleteUser,
+} from "./firebase";
 import pokemon from "pokemontcgsdk";
 import Header from "./Components/Header/Header";
 import CardSearch from "./Components/UpperPanel/CardSearch/CardSearch";
@@ -7,11 +14,18 @@ import CardInfo from "./Components/UpperPanel/CardInfo/CardInfo";
 import LoginForm from "./Components/Login/LoginForm";
 import Portfolio from "./Components/LowerPanel/Portfolio/Portfolio";
 import { useEffect, useState } from "react";
-import {deleteDoc,doc,getDocs,addDoc,collection,arrayUnion,updateDoc,} from "firebase/firestore/lite";
+import {
+  deleteDoc,
+  doc,
+  getDocs,
+  addDoc,
+  collection,
+  arrayUnion,
+  updateDoc,
+} from "firebase/firestore/lite";
 import { async } from "@firebase/util";
 
 function App() {
-
   // API key to access pokemon card api
   pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
 
@@ -27,7 +41,7 @@ function App() {
     password: "",
     portfolio: [],
   });
-  
+
   // Card Portfolio (Stored locally)
   const [cardPortfolio, setCardPortfolio] = useState([]);
 
@@ -53,7 +67,6 @@ function App() {
   // Allows for "side effects"
   // Runs on every render
   useEffect(() => {
-
     // Fetch list of users
     const fetchDB = async () => {
       const userList = await getDocs(usersCollectionRef);
@@ -63,10 +76,8 @@ function App() {
     fetchDB();
   }, []);
 
-
   // Login function
   const login = async (details) => {
-   
     // Look for log-in match
     const foundEntry = dbRef.find(
       (entry) =>
@@ -80,7 +91,7 @@ function App() {
         username: foundEntry.username,
         password: foundEntry.password,
         portfolio: foundEntry.portfolio,
-        id: foundEntry.id
+        id: foundEntry.id,
       });
     }
 
@@ -93,15 +104,13 @@ function App() {
   // Logs user out by resetting user object
   const logout = async (e) => {
     e.preventDefault();
-    setUser({ ...user, username: "", password: "", portfolio:[] });
+    setUser({ ...user, username: "", password: "", portfolio: [] });
 
-    setCardPortfolio({});
+    setCardPortfolio([]);
   };
-
 
   // Registers a new user
   const register = async (details) => {
-
     // Check username availability
     const foundEntry = dbRef.find(
       (entry) => entry.username === details.username
@@ -111,83 +120,77 @@ function App() {
     // If not taken, add new user to db and set user state
     if (foundEntry) {
       alert("Username taken");
-    } 
-    else {
-
+    } else {
       // Add user to Firebase with blank portfolio
-      const userDocRef = await addUser(db, {...details, portfolio:[]});
-      
+      const userDocRef = await addUser(db, { ...details, portfolio: [] });
+
       // Set the user locally
       setUser({
         username: details.username,
         password: details.password,
         portfolio: [],
-        id: userDocRef.id
+        id: userDocRef.id,
       });
     }
   };
 
   // Deletes a user from Firebase
   const deleteUserFromDB = async (details) => {
-    
     const foundEntry = dbRef.find(
       (entry) => entry.username === details.username
     );
 
     if (foundEntry) {
-
       // Delete user from firebase
-      await deleteDoc(doc(db, "users", user.id));
+      await deleteDoc(doc(db, "Users", user.id));
+
+      console.log({user})
 
       // reset the user locally
       setUser({
         username: "",
         password: "",
         portfolio: [],
-        id: ""
+        id: "",
       });
 
-      setCardPortfolio({});
+      setCardPortfolio([]);
     } else {
       alert("Unable to delete");
     }
   };
 
-
   const addCardToPortfolio = async () => {
-    
     let alreadyPresent = false;
 
     //TO-DO
-    for (const card in user.portfolio){
-      
-      if(user.portfolio[card] === fetchedCard.id){
+    for (const card in user.portfolio) {
+      if (user.portfolio[card] === fetchedCard.id) {
         alreadyPresent = true;
       }
     }
     //Deal with adding a duplicate card
-    if(!alreadyPresent){
+    if (!alreadyPresent) {
       await addCard(db, user, fetchedCard.id);
       setUser({ ...user, portfolio: [...user.portfolio, fetchedCard.id] });
-      updatePortfolio();
     }
-   
+
+    console.log({user})
   };
 
   const deleteCardFromPortfolio = async () => {
-    
     // Delete card from DB
-    await deleteCard(db, user, fetchedCard.id)
-    setUser({...user, portfolio: user.portfolio.filter((card) => { return card !== fetchedCard.id})
-    })
-
-    updatePortfolio();
-
-  }
+    await deleteCard(db, user, fetchedCard.id);
+    setUser({
+      ...user,
+      portfolio: user.portfolio.filter((card) => {
+        return card !== fetchedCard.id;
+      }),
+    });
+  };
 
   // Runs when search button clicked
   const handleSearchSubmit = async (event) => {
-    
     // prevent page refresh
     event.preventDefault();
 
@@ -212,13 +215,12 @@ function App() {
   };
 
   // Updates the local card portfolio object
-  // Runs when a card is added/deleted 
+  // Runs when a card is added/deleted
   // Possible run on startup?
   const updatePortfolio = async () => {
     const tempPortfolio = [];
-    for(const id of user.portfolio) {
-
-      const card = await pokemon.card.find(id)
+    for (const id of user.portfolio) {
+      const card = await pokemon.card.find(id);
 
       const tempCard = {
         cardImg: card.images.small,
@@ -228,30 +230,30 @@ function App() {
         cardNumber: card.number,
         cardId: card.id,
       };
-      
-      if(user.portfolio[id] !== tempCard.cardId){
+
+      if (user.portfolio[id] !== tempCard.cardId) {
         tempPortfolio.push(tempCard);
       }
-    };
-    // setCardPortfolio(tempPortfolio);
-    console.log("hello")
-    console.log({tempPortfolio})
-    console.log({user})
+    }
+    setCardPortfolio(tempPortfolio);
+    console.log("hello");
+    console.log({ tempPortfolio });
+    console.log({ user });
   };
+
+console.log({cardPortfolio})
 
   // Returns LoginForm if username = ""
   // Returns dashboard wrapper if user is logged in
   return (
     <div className="App">
       {user.username !== "" ? (
-    
         <div className="dashboard">
-
           <div className="header">
-            <Header 
-            user={user} 
-            logout={logout} 
-            deleteUserFromDB = {deleteUserFromDB}  
+            <Header
+              user={user}
+              logout={logout}
+              deleteUserFromDB={deleteUserFromDB}
             />
           </div>
 
@@ -272,16 +274,12 @@ function App() {
             <Portfolio
               cardPortfolio={cardPortfolio}
               updatePortfolio={updatePortfolio}
+              user={user}
             />
           </div>
-
         </div>
       ) : (
-        <LoginForm 
-          login={login} 
-          register={register} 
-          setUser={setUser} 
-        />
+        <LoginForm login={login} register={register} setUser={setUser} />
       )}
     </div>
   );

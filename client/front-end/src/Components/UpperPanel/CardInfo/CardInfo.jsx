@@ -1,5 +1,4 @@
 import { useState } from "react";
-import pokemon from "pokemontcgsdk";
 import {db, addCard } from "../../../firebase";
 import defaultImg from '../../../pokemon_card_back.jpg'
 

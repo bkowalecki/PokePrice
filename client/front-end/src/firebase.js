@@ -45,15 +45,16 @@ export async function addUser(db, user) {
 }
 
 // Delete User
-export async function deleteUser(db, user) {
-  try {
-    const docRef = await deleteDoc(collection(db, "Users"), user);
-    console.log("Document written with ID: ", docRef.id);
-    return docRef;
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
+// dont work
+// export async function deleteUser(db, user) {
+//   try {
+//     const docRef = await deleteDoc(collection(db, "Users"), user);
+//     console.log("Document written with ID: ", docRef.id);
+//     return docRef;
+//   } catch (e) {
+//     console.error("Error adding document: ", e);
+//   }
+// }
 
 // Add card to user portfolio
 export async function addCard(db, user, fetchedCardId) {
