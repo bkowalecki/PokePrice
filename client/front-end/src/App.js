@@ -26,6 +26,7 @@ import {
 import { async } from "@firebase/util";
 
 function App() {
+
   // API key to access pokemon card api
   pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
 
@@ -105,7 +106,18 @@ function App() {
   const logout = async (e) => {
     e.preventDefault();
     setUser({ ...user, username: "", password: "", portfolio: [] });
+    setSearchData({name: "",
+    set: "",
+    number: "",});
+    setFetchedCard({
+      img: "",
+      price: "",
+      id: null,
+      name: "",
+      set: "",
+      number: "",
 
+    })
     setCardPortfolio([]);
   };
 

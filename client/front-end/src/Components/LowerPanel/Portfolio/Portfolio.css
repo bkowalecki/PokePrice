@@ -1,7 +1,7 @@
 
 .portfolio{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     padding: 50px;
 }
@@ -9,13 +9,27 @@
 
 .portfolio-stats-wrapper{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
     color: #96c93d;
     background-color: black;
-    font-size: 4vh;
-    height: 200px;
+    font-size: 4.5vh;
     padding:25px;
+}
+
+.top-card-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-card-img-wrapper{
+    
+}
+
+.top-card-img{
+    width: 175px;
 }
 
 .total-cards-wrapper{
@@ -23,7 +37,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-
+    justify-content: center;
+    width:250px;
 }
 
 .total-value-wrapper{
@@ -31,31 +46,16 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
+    justify-content: center;
+    width:250px;
 }
 
 .portfolio-wrapper{
     display: flex;
     justify-content: center;
     text-align: center;
-    overflow-y: scroll;
-    scrollbar-color: red red;
     color:#96c93d;
     background-color: black;
-    border-left: solid #96c93d 2px;
-    border-bottom: solid #96c93d 2px;
-    border-top: solid #96c93d 2px;
-    height: 300px;
-    
-}
-::-webkit-scrollbar {
-    height: 12px;
-    width: 12px;
-    background: #96c93d;
-    
-}
-
-::-webkit-scrollbar-track {
-    background: #96c93d;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -65,9 +65,12 @@
   }
 
 .card-img-portfolio{
-    width:75px;
+    width:150px;
     padding: 10px;
-    
+}
+
+.card-portfolio-data{
+    /* display: flex; */
 }
 
 .portfolio-table{
@@ -91,11 +94,13 @@
     background-color: #96c93d;
     color: black;
     top:0;
+    /* display: flex; */
 }
 
 .table-data{
-    font-size: 3vh;
-    padding: 5px;
+    font-size:3.5vh;
+    padding: 50px;
+    cursor: default;
 }
 
 .card-img-portfolio-container{
@@ -125,6 +130,8 @@ tbody{
     .portfolio{
         flex-direction: column;
     }
+
+
     
 
     

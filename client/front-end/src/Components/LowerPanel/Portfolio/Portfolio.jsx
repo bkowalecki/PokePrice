@@ -27,7 +27,7 @@ const TdData = ({ cardPortfolio }) => {
   console.log({ cardPortfolio });
   return cardPortfolio.map((data) => {
     return (
-      <tr>
+      <tr className="card-portfolio-data">
         {column.map((v) => {
           if (v === "cardImg") {
             return (
@@ -53,10 +53,19 @@ const Portfolio = ({ cardPortfolio, updatePortfolio, user }) => {
 
   const column = null;
 
+  let mostExpeniveCardPrice = 0;
+  let mostExpensiveCardImg = ""
   let totalPortfolioValue = 0;
   for (const data of cardPortfolio) {
     totalPortfolioValue = totalPortfolioValue + data.cardPrice;
-  }
+    
+    let tempCardPrice = data.cardPrice
+
+    if(tempCardPrice > mostExpeniveCardPrice){
+        mostExpeniveCardPrice = tempCardPrice
+        mostExpensiveCardImg = data.cardImg
+    }
+}
   
   totalPortfolioValue=totalPortfolioValue.toFixed(2);
 
@@ -70,24 +79,37 @@ const Portfolio = ({ cardPortfolio, updatePortfolio, user }) => {
 
   // console.log(cardPortfolio)
 
-  // On load update portfolio
+  // Update portfolio n user change
   useEffect(() => {
     updatePortfolio();
   }, [user]);
 
   return (
     <div className="portfolio">
+        
+        
+         
       <div className="portfolio-stats-wrapper">
         <div className="total-cards-wrapper">
           <div>Cards</div>
           <div>{cardPortfolio.length}</div>
+        </div>
+        
+        <div className="top-card-wrapper">
+            <div>Top Card</div>
+            <div className="top-card-img-wrapper">
+                <img className="top-card-img" src={mostExpensiveCardImg}/>
+            </div>
         </div>
 
         <div className="total-value-wrapper">
           <div>Portfolio Value</div>
           <div>${totalPortfolioValue}</div>
         </div>
+
       </div>
+
+     
 
       <div className="portfolio-wrapper">
         <table className="portfolio-table">
