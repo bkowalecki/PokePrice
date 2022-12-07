@@ -28,6 +28,7 @@ import { async } from "@firebase/util";
 function App() {
 
   // API key to access pokemon card api
+  // NEED TO EVENTUALLY HIDE IN ENV VAR
   pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
 
   // Database State Variable
@@ -228,7 +229,6 @@ function App() {
 
   // Updates the local card portfolio object
   // Runs when a card is added/deleted
-  // Possible run on startup?
   const updatePortfolio = async () => {
     const tempPortfolio = [];
     for (const id of user.portfolio) {
@@ -248,12 +248,9 @@ function App() {
       }
     }
     setCardPortfolio(tempPortfolio);
-    console.log("hello");
-    console.log({ tempPortfolio });
-    console.log({ user });
   };
 
-console.log({cardPortfolio})
+
 
   // Returns LoginForm if username = ""
   // Returns dashboard wrapper if user is logged in

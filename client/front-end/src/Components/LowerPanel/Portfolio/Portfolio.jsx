@@ -13,6 +13,7 @@ const ThData = ({ heading }) => {
   });
 };
 
+// Card data
 const TdData = ({ cardPortfolio }) => {
   if (cardPortfolio.length === 0) {
     return (
@@ -24,21 +25,19 @@ const TdData = ({ cardPortfolio }) => {
 
   const column = Object.keys(cardPortfolio[0]);
 
-  console.log({ cardPortfolio });
   return cardPortfolio.map((data) => {
     return (
       <tr className="card-portfolio-data">
         {column.map((v) => {
           if (v === "cardImg") {
             return (
-              <td>
+              <td className="card-img-portfolio-wrapper">
                 <img className="card-img-portfolio" src={data[v]} />
               </td>
             );
           } else if (v === "cardId") {
             return;
           } else if (v === "cardPrice") {
-            // alert(data[v])
             return <td className="table-data">${data[v]}</td>;
           }
           return <td className="table-data">{data[v]}</td>;
@@ -74,12 +73,8 @@ const Portfolio = ({ cardPortfolio, updatePortfolio, user }) => {
   // Set the resulting card object's img, name, set, and price
   // To the corresponding html
 
-  // cardPortfolio = [{"name":name,...}, {"name":name,...}]
-  // const [cardPortfolio, setCardPortfolio] = useState([])
 
-  // console.log(cardPortfolio)
-
-  // Update portfolio n user change
+  // Update portfolio on user change
   useEffect(() => {
     updatePortfolio();
   }, [user]);
@@ -118,7 +113,7 @@ const Portfolio = ({ cardPortfolio, updatePortfolio, user }) => {
               <ThData heading={heading} />
             </tr>
           </thead>
-          <tbody>
+          <tbody className="card-portfolio-data">
             <TdData cardPortfolio={cardPortfolio} />
           </tbody>
         </table>

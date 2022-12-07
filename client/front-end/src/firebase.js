@@ -45,7 +45,6 @@ export async function addUser(db, user) {
 }
 
 // Delete User
-// dont work
 // export async function deleteUser(db, user) {
 //   try {
 //     const docRef = await deleteDoc(collection(db, "Users"), user);

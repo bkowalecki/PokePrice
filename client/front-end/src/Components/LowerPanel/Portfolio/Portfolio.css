@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 250px;
 }
 
 .top-card-img-wrapper{
@@ -99,7 +100,7 @@
 
 .table-data{
     font-size:3.5vh;
-    padding: 50px;
+    padding: 20px;
     cursor: default;
 }
 
@@ -129,10 +130,73 @@ tbody{
 
     .portfolio{
         flex-direction: column;
+        padding: 0px;
+    }
+    .portfolio-wrapper{
+        display: inherit;
     }
 
 
+    thead{
+        display: none;
+    }
+
+    .portfolio-stats-wrapper{
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+        border-bottom: #96c93d solid 1px ;
+    }
+
+    .total-cards-wrapper{
+        padding: 25px;
+    }
+    .total-cards-wrapper:before{
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 1px;
+        bottom: 100;
+        border-bottom: 2px solid #96c93d;
+    }
+
+    .top-card-wrapper{
+        padding: 20px;
+    }
+
+    .total-value-wrapper{
+        padding: 25px;
+        padding-bottom: 50px;
+    }
+
+    .card-portfolio-data{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .table-data{
+        padding: 0px;
+        position: relative;
+        top: 0;
+        transition-property: top;
+        transition-duration: 2s;
+    }
+    .table-row{
+       
+    }
     
+    .card-img-portfolio{
+        width: inherit;
+    }
+
+    /* .card-portfolio-data:hover .table-data{
+        top:-301px;
+        opacity: 1;
+    }
+
+    .card-img-portfolio:hover {
+        opacity: 0.2;
+    } */
 
     
  }
