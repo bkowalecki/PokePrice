@@ -29,7 +29,7 @@ function App() {
 
   // API key to access pokemon card api
   // NEED TO EVENTUALLY HIDE IN ENV VAR
-  pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
+  pokemon.configure({ apiKey: process.env.API_KEY });
 
   // Database State Variable
   const [dbRef, setdbRef] = useState([]);
