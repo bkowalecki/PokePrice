@@ -153,10 +153,12 @@ function App() {
       (entry) => entry.username === details.username
     );
 
+    
+
     if (foundEntry) {
       // Delete user from firebase
-      await deleteDoc(doc(db, "Users", user.id));
-
+      //await deleteDoc(doc(dbRef, "Users", user.id));
+      await deleteUser(db, user)
       console.log({user})
 
       // reset the user locally
@@ -267,11 +269,11 @@ function App() {
           </div>
 
           <div className="upper-panel">
-            <CardSearch
+            {/* <CardSearch
               handleSearchSubmit={handleSearchSubmit}
               searchData={searchData}
               setSearchData={setSearchData}
-            />
+            /> */}
             <CardInfo
               fetchedCard={fetchedCard}
               addCardToPortfolio={addCardToPortfolio}
