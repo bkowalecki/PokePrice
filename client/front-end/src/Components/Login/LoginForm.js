@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./LoginForm.css";
+import LoginPageImg from "../../LoginPageImg.png"
 
 // Login and Registration Functionality
 function LoginForm({ login, register, setUser }) {
@@ -46,15 +47,20 @@ function LoginForm({ login, register, setUser }) {
   };
 
   return (
-    <div>
+    <div className="login-page">
+       <div className="login-page-logo-container">{<img
+            className="card-img"
+            src={LoginPageImg}
+            alt="new"
+          /> }</div>
       {mode === "" ? (
         <div className="form-wrapper">
           <form onSubmit={submitLoginHandler} className="login-form">
             <div className="form-inner">
-              <h2>Login</h2>
+        
 
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username" className="username-text">Username</label>
                 <input
                   type="text"
                   name="username"
@@ -67,7 +73,7 @@ function LoginForm({ login, register, setUser }) {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password" className="password-text">Password</label>
                 <input
                   type="password"
                   name="password"
@@ -79,7 +85,7 @@ function LoginForm({ login, register, setUser }) {
                 ></input>
               </div>
 
-              <input type="submit" value="LOGIN" className="btn" />
+              <input type="submit" value="LOGIN" className="login-btn" />
 
               <div className="register-link" onClick={switchToRegister}>
                 Register a new user

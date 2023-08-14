@@ -3,7 +3,7 @@ import pokemon from "pokemontcgsdk";
 import "./CardSearch.css";
 
 // API Key for Database access
-pokemon.configure({ apiKey: "d47970f2-3447-4b91-92f8-8b3427ebb339" });
+pokemon.configure({ apiKey: process.env.API_KEY });
 
 const CardSearch = (props) => {
   const { searchData, setSearchData, handleSearchSubmit } = props;

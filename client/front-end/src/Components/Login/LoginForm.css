@@ -1,10 +1,22 @@
+.login-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+}
+
+
+.login-page-logo-container{
+    display: flex;
+    justify-content: center;
+}
 
 .form-wrapper{
     display: flex; 
     justify-content: center;
-    padding:50px;
-    background-color: #00b09b;
-    margin: 10% 20%;
+    color: white;
+
 }
 
 form{
@@ -24,14 +36,38 @@ form{
 .form-group{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
+    margin: 15px;
 }
-.btn{
-    margin:5%;
+
+.username-text{
+    font-size: 25px;
+    
+}
+
+.password-text{
+    font-size: 25px;
+    
+}
+
+.login-btn{
+    margin: 10%;
+    padding: 5% 15%;
+    font-size: xx-large;
+    border: 5px solid white;
+    border-radius: 5%;
+    
+}
+.login-btn:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    opacity: 1;
+  transition: 0.2s;
 }
 
 .register-link{
-    color:black;
+    color:white;
 }
 
 .register-to-login-link{
@@ -40,13 +76,13 @@ text-align: center;
 }
 
 .register-to-login-link:hover{
-    color: white;
+    color: grey;
     cursor: pointer;
     
 }
 
 .register-link:hover{
-    color:white;
+    color:grey;
     cursor: pointer;
 }
 
